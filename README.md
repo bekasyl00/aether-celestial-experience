@@ -1,5 +1,6 @@
 # AETHER
-
+owner: @gojosatorukz
+assistant: bekasyl
 **A cinematic journey through light, flight, and the heavens.**
 
 [Experience AETHER](https://bekasyl00.github.io/aether-celestial-experience/) · [Source](https://github.com/bekasyl00/aether-celestial-experience)
