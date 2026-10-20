@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#242521" />
+    <meta name="description" content="AETHER — an immersive journey through light, flight, and the heavens. A cinematic WebGL experience by Bekassyl Zhaksylyk." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="AETHER — Beyond the ordinary" />
+    <meta property="og:description" content="Somewhere between a dream and the divine. Enter a cinematic journey through the heavens." />
+    <meta property="og:url" content="https://bekasyl00.github.io/aether-celestial-experience/" />
+    <meta property="og:image" content="https://bekasyl00.github.io/aether-celestial-experience/images/awakening.webp" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="./images/awakening.webp" as="image" fetchpriority="high" />
+    <title>AETHER — Beyond the ordinary</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#journey">Skip to the journey</a>
+    <div class="world" aria-hidden="true">
+      <div class="world-base"></div>
+      <div class="world-image awakening"></div>
+      <div class="world-image paradise"></div>
+      <div class="world-shade"></div>
+      <div class="world-glow"></div>
+      <canvas id="celestial-canvas"></canvas>
+      <div class="grain"></div>
+      <div class="vignette"></div>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="Aether — back to the beginning">
+        <svg viewBox="0 0 48 32" fill="none" aria-hidden="true"><path d="M24 28C22 16 12 12 2 3c0 11 7 17 16 20M24 28C26 16 36 12 46 3c0 11-7 17-16 20M18 18C12 17 7 12 5 7M30 18c6-1 11-6 13-11M24 27l-3-8 3-10 3 10-3 8Z" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>AETHER<span class="brand-dot">®</span></span>
+      </a>
+      <nav class="top-nav" aria-label="Main navigation">
+        <a href="#journey">The journey</a>
+        <a href="#philosophy">The philosophy</a>
+      </nav>
+      <button class="sound-toggle" aria-label="Turn ambient sound on" aria-pressed="false">
+        <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+        <span class="sound-label">Sound off</span>
+      </button>
+    </header>
+
+    <nav class="chapter-nav" aria-label="Journey chapters">
+      <a href="#home" aria-label="Chapter 1: The awakening" aria-current="location"><span>01</span><i></i></a>
+      <a href="#journey" aria-label="Chapter 2: The ascent"><span>02</span><i></i></a>
+      <a href="#paradise" aria-label="Chapter 3: The infinite"><span>03</span><i></i></a>
+    </nav>
+
+    <main>
+      <section class="hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-content">
+          <p class="eyebrow intro-element"><span class="tiny-star">✦</span> BETWEEN EARTH & ETERNITY</p>
+          <h1 id="hero-title"><span class="title-line">Somewhere</span><span class="title-line"><em>beyond</em> the</span><span class="title-line">ordinary.</span></h1>
+          <p class="hero-description intro-element">A quiet escape. An extraordinary world.<br />Let the heavens unfold.</p>
+          <a class="journey-link intro-element" href="#journey"><span class="circle-arrow" aria-hidden="true">↗</span><span>Begin the journey</span></a>
+        </div>
+        <div class="hero-side-note" aria-hidden="true">A STUDY IN LIGHT, FORM & FEELING</div>
+        <div class="hero-bottom intro-element">
+          <div class="chapter-caption"><span class="status-light"></span> A CELESTIAL EXPERIENCE <span class="edition">VOL. 001</span></div>
+          <a class="scroll-prompt" href="#journey"><span>SCROLL TO ASCEND</span><span class="scroll-line" aria-hidden="true"></span></a>
+          <span class="coordinate">EST. MMXXVI <span>↗</span></span>
+        </div>
+      </section>
+
+      <section class="interlude" id="philosophy" aria-labelledby="philosophy-title">
+        <div class="interlude-content reveal">
+          <p class="eyebrow">THE ART OF LOOKING UP</p>
+          <h2 id="philosophy-title">Some things aren't meant<br />to be understood.<br /><em>Only felt.</em></h2>
+          <p>Beyond the noise, there is a place where time softens.<br class="desktop-break" /> Where light becomes a language. And wonder finds you.</p>
+          <span class="vertical-rule" aria-hidden="true"></span>
+        </div>
+      </section>
+
+      <section class="chapter ascent" id="journey" aria-labelledby="ascent-title">
+        <div class="chapter-copy reveal">
+          <p class="eyebrow"><span class="chapter-number">II</span> THE ASCENT</p>
+          <h2 id="ascent-title">Made of light.<br /><em>Born to rise.</em></h2>
+          <p>Every feather holds a little infinity.<br />Every movement, a reason to let go.<br />Follow the feeling of weightlessness.</p>
+          <a class="text-link" href="#paradise">A little closer to forever <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="specimen-label"><span class="label-cross" aria-hidden="true">+</span><span>SERAPHIM<br /><small>FORM NO. 001 / IVORY & LIGHT</small></span></div>
+      </section>
+
+      <section class="chapter infinite" id="paradise" aria-labelledby="infinite-title">
+        <div class="chapter-copy reveal">
+          <p class="eyebrow"><span class="chapter-number">III</span> THE INFINITE</p>
+          <h2 id="infinite-title">Nothing ends.<br /><em>Everything<br />opens.</em></h2>
+          <p>Past the edge of the familiar.<br />Through the golden hours of a new world.<br />You are exactly where you need to be.</p>
+          <a class="journey-link" href="#afterglow"><span class="circle-arrow" aria-hidden="true">↗</span><span>Step into the light</span></a>
+        </div>
+        <p class="vertical-caption">THERE IS ALWAYS SOMETHING BEYOND.</p>
+      </section>
+
+      <section class="afterglow" id="afterglow" aria-labelledby="afterglow-title">
+        <div class="reveal">
+          <p class="eyebrow"><span class="tiny-star">✦</span> TAKE A LITTLE WONDER WITH YOU</p>
+          <h2 id="afterglow-title">Heaven is<br /><em>a state of mind.</em></h2>
+          <button class="replay-button"><span>Experience it again</span><span aria-hidden="true">↺</span></button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="footer-wordmark" href="#home">AETHER</a>
+      <div class="footer-credit">Imagined & built by <a href="https://github.com/bekasyl00" target="_blank" rel="noopener noreferrer">Bekassyl Zhaksylyk ↗</a></div>
+      <a href="https://github.com/bekasyl00/aether-celestial-experience" target="_blank" rel="noopener noreferrer">View the source ↗</a>
+      <span>© 2026</span>
+    </footer>
+
+    <div class="bottom-controls">
+      <button class="motion-toggle" aria-pressed="false" aria-label="Pause ambient animation"><svg class="pause-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.5"/></svg><span>Motion</span></button>
+      <div class="progress-track" role="progressbar" aria-label="Journey progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
+    </div>
+    <p class="sr-only" id="experience-status" role="status"></p>
+    <noscript><div class="noscript-note">Welcome to AETHER. Enable JavaScript for the animated 3D experience. You can still explore the journey below.</div></noscript>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

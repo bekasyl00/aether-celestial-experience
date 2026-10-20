@@ -1,0 +1,24 @@
+{
+  "name": "aether-celestial-experience",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "A cinematic journey through light, flight, and the heavens.",
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1",
+    "check": "node --check src/main.js && node --check src/scene.js && node --check src/audio.js",
+    "test": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/cormorant-garamond": "^5.2.6",
+    "@fontsource/manrope": "^5.2.8",
+    "gsap": "^3.14.2",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "vite": "^7.1.7"
+  }
+}
