@@ -2,7 +2,7 @@
 
 ## Generated artwork
 
-The following artwork was generated for AETHER with OpenAI's built-in image generation tool in Codex on 20 October 2026. The briefs below summarize the generation direction; they are not verbatim prompt transcripts.
+The following artwork was generated for AETHER with OpenAI's built-in image generation tool in Codex on 20 October 2026. Both requests used `transparent_background: false`. Original generated PNGs were encoded as WebP for the website; no external image service is needed at runtime.
 
 | File | Generation brief | Use |
 | --- | --- | --- |
@@ -10,6 +10,18 @@ The following artwork was generated for AETHER with OpenAI's built-in image gene
 | `public/images/infinite.webp` | A monumental celestial golden gate rising through luminous clouds, with warm heavenly light and cinematic depth. | Final chapter backdrop |
 
 These are generated still images, not photographs, downloaded stock assets, or 3D models. They are layered with procedural Three.js geometry in the browser. The project's source-code MIT license does not grant rights to these images or make representations about third-party rights.
+
+### Original prompt: awakening.webp
+
+```text
+Use case: stylized-concept. Asset type: cinematic hero artwork for a luxury immersive web experience. Generate an incredibly beautiful photorealistic 3D film still of a monumental classical marble angel floating above a sea of dense soft billowing clouds in heaven at golden sunrise. Wide landscape 16:9 composition. Angel positioned in the RIGHT HALF of frame (around x=68%), full head and torso visible, luxurious draped ivory fabric sculpted from Carrara marble, serene androgynous classical face with curly flowing hair, two gigantic extraordinarily detailed feathered wings sweeping upward and outward almost filling the right two thirds. Elegant thin gold halo behind its head. Below, clouds obscure the bottom half of the statue. LEFT THIRD has quiet misty charcoal taupe sky negative space for a heading, not black. Background distant sun rays and atmospheric heavenly architecture faintly emerging. Color palette muted champagne gold, alabaster ivory, warm stone, smoky silver, small touches of pale blue. Strong sculptural chiaroscuro, soft cinematic volumetric light from upper right, realistic stone pores, breathtaking architectural photography meets baroque sculpture, no cartoon, no plastic, no neon, not overexposed. No text, no watermark, no border. Highest visual fidelity, sophisticated fine-art image, unreal engine quality.
+```
+
+### Original prompt: infinite.webp
+
+```text
+Use case: stylized-concept. Asset type: cinematic panoramic background for an immersive heaven website. Ultra wide landscape 16:9 image, no text. An impossible monumental circular golden celestial gate / sun disk rising in a vast soft ocean of clouds, classical ivory marble colonnades floating far in the distance, dawn rays piercing atmospheric cloud layers. Empty middle foreground and left half, no people, no angels, no wings. Sophisticated film still with realistic cinematic volumetric atmosphere, warm silver cloud edges, muted antique champagne gold and desaturated blue-gray shadows. Gate is precisely centered near x=68%, distant. Soft bright center, charcoal taupe at edges. Frame looks like a high budget heavenly dream sequence, incredible depth and fine detail. Avoid neon, avoid illustration, avoid saturated colors, no watermark, no text, no border.
+```
 
 ## Procedural visuals and audio
 

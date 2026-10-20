@@ -68,7 +68,9 @@ GitHub Actions installs the locked dependencies, checks syntax, builds the stati
 
 Local release checks: production build and syntax checks passed; **14 browser smoke tests passed** across desktop and mobile Chromium. The tests cover actual WebGL draw calls, chapter navigation, overflow, gesture-only audio, replay/focus, motion controls, reduced motion, and WebGL fallback. The rendered design was reviewed at 1440×900 and 390×844; missing-image fallback and keyboard skip navigation were also exercised.
 
-The live deployment is published by the [Deploy AETHER workflow](https://github.com/bekasyl00/aether-celestial-experience/actions/workflows/deploy.yml).
+The live GitHub Pages deployment was also checked on **20 October 2026**: HTTPS returned 200, all **14 smoke tests passed against the public URL**, and desktop/mobile captures confirmed WebGL rendering without uncaught JavaScript errors or horizontal overflow.
+
+Deployment is managed by the [Deploy AETHER workflow](https://github.com/bekasyl00/aether-celestial-experience/actions/workflows/deploy.yml).
 
 ## Credits and license
 
