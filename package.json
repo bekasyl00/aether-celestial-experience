@@ -1,20 +1,21 @@
 {
   "name": "aether-celestial-experience",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "private": true,
   "type": "module",
-  "description": "A cinematic journey through light, flight, and the heavens.",
+  "description": "An interactive Three.js universe of 1,000 unique angels and demons, two realms and articulated battles.",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",
     "preview": "vite preview --host 127.0.0.1",
-    "check": "node --check src/main.js && node --check src/scene.js && node --check src/audio.js",
+    "check": "node --check src/main.js && node --check src/realm.js && node --check src/sculptures.js && node --check src/rig.js && node --check src/combat.js && node --check src/physics.js && node --check src/audio.js",
+    "test:dynamics": "node scripts/verify-dynamics.mjs",
+    "test:models": "node scripts/verify-rig.mjs",
     "test": "playwright test"
   },
   "dependencies": {
     "@fontsource/cormorant-garamond": "^5.2.6",
     "@fontsource/manrope": "^5.2.8",
-    "gsap": "^3.14.2",
     "three": "^0.180.0"
   },
   "devDependencies": {

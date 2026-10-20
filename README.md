@@ -1,27 +1,35 @@
-# AETHER
+# AETHER — The Other Side
+
 owner: @gojosatorukz
 assistant: bekasyl
-**A cinematic journey through light, flight, and the heavens.**
 
-[Experience AETHER](https://bekasyl00.github.io/aether-celestial-experience/) · [Source](https://github.com/bekasyl00/aether-celestial-experience)
+**One thousand characters. Two worlds. A different battle each time.**
 
-![AETHER — cinematic marble angel at sunrise](docs/preview.webp)
+[Open AETHER](https://bekasyl00.github.io/aether-celestial-experience/) · [Source](https://github.com/bekasyl00/aether-celestial-experience)
 
-A scroll-driven creative development project by **Bekassyl Zhaksylyk**. Move from a marble angel at sunrise into a field of floating feathers, unfolding wings, and a luminous celestial gateway.
+![AETHER — angels, demons and two dimensional portals](docs/preview.webp)
 
-## The experience
+An interactive creative development project by **Bekassyl Zhaksylyk**. Explore an original collection of 500 angels and 500 demons, enter their worlds, inspect any figure from every angle, and awaken the sword between the portals.
 
-- Real-time Three.js wings built from feather meshes, a dimensional portal, and drifting particles.
-- Scroll-linked scene progression, camera movement, layered artwork, and GSAP typography reveals.
-- An optional ambient soundscape synthesized in the browser with Web Audio. Sound starts only after you enable it.
-- Responsive layouts, chapter navigation, a motion toggle, and support for the system's reduced-motion preference.
-- A readable visual fallback when WebGL is unavailable, with locally served fonts and artwork.
+## Explore
 
-The cinematic angel and cloudscape backdrops are **generated still images**. The wings, feather geometry, portal, particles, and camera animation are **real-time 3D** rendered over those images. This combination gives the scene its cinematic scale while keeping the interactive geometry procedural. Asset provenance is recorded in [ASSETS.md](ASSETS.md).
+- Drag to orbit, use the wheel or zoom controls to inspect details, and flip the selected figure.
+- Open the collection to search all 1,000 characters or filter by faction. Selecting a character builds its matching detailed sculpture.
+- Click a portal to enter heaven or hell. Each world has its own atmosphere, architecture, terrain and army.
+- Activate the central sword to begin a battle with new fighters, tactics, damage rolls and an outcome generated from a fresh seed.
+- Enable the synthesized ambient sound, pause motion, or choose balanced rendering.
 
-## Built with
+The collection uses **original procedural geometry** across 20 archetypes. Individual designs vary in anatomy, wings, crowns, horns, faces, drapery, armor and regalia. These are 1,000 distinct generated meshes, not 1,000 independently hand-sculpted or scanned assets. Distant figures use simplified versions; selecting one generates its detailed counterpart with thousands of modeled elements.
 
-Vanilla JavaScript, Vite, Three.js, GSAP, CSS, and the Web Audio API. Cormorant Garamond and Manrope are self-hosted through Fontsource. There is no application backend.
+The optional museum archive contains **two separately credited photogrammetry models**. They are static sculptures for inspection and are not used as rigged combat characters. See [ASSETS.md](ASSETS.md).
+
+## Animation and physics
+
+Battle characters have skeletal articulation for the torso, head, arms, wrists, legs and wings. Procedural choreography blends anticipation, strikes, blocks, evasions and recovery. Hands carry the blades.
+
+A fixed-step dynamics solver adds momentum, hit impulses, gravity, floor contact, landing compression and spring motion for balance and wing follow-through. The armies use lighter GPU articulation and formation movement. This is an authored real-time animation system, not motion capture or a full cloth/ragdoll simulation.
+
+Fresh battle seeds generate different action sequences and damage. Either faction can win; the same winner can naturally occur in consecutive battles. Reusing a seed reproduces its simulation.
 
 ## Run locally
 
@@ -32,49 +40,52 @@ npm ci
 npm run dev
 ```
 
-Open the Vite URL shown in the terminal. The project is configured under `/aether-celestial-experience/`, including during local development.
+Open the Vite address with `/aether-celestial-experience/`.
 
 ```bash
 npm run check
+npm run test:dynamics
+npm run test:models
 npm run build
 npm run preview
 ```
 
-`check` validates JavaScript syntax. It is not a browser, accessibility, or performance test.
-
-Run the browser smoke suite:
+For browser verification:
 
 ```bash
 npx playwright install chromium
 npm test
 ```
 
-The suite starts Vite automatically. On macOS it can reuse an installed Google Chrome. `PLAYWRIGHT_BASE_URL` targets an existing preview or the live deployment.
+The suite starts Vite automatically. On macOS it can use an installed Google Chrome. Set `PLAYWRIGHT_BASE_URL` to test a running preview or the public deployment. The browser tests exercise actual WebGL state, collection identity, camera controls, portal clicks, model flipping, audio, accessibility states and combat.
+
+See the [v2 verification record](docs/VERIFICATION.md) for completed checks and their scope.
+
+`test:dynamics` checks floor contact, bounded ballistic jumps, damping, collision separation, consistency at 30/60/120 Hz, and 1,000 seeded battle sequences. `test:models` hashes all 1,000 geometries and checks actual skeletal vertex deformation, normalized weights and reset stability.
 
 ## Project map
 
 | File | Responsibility |
 | --- | --- |
-| `index.html` | Story, navigation, and accessible controls |
-| `src/main.js` | Scroll progression, reveals, controls, and scene loading |
-| `src/scene.js` | Procedural Three.js geometry and rendering |
-| `src/audio.js` | Optional synthesized ambience |
-| `src/style.css` | Typography, composition, responsive layouts, and motion preferences |
-| `public/images/` | Generated cinematic backdrops |
-| `DESIGN.md` | Visual direction |
+| `src/main.js` | Interface, collection, accessibility and battle HUD |
+| `src/realm.js` | Three.js scene, worlds, portals, selection and army rendering |
+| `src/sculptures.js` | Seeded geometry and character designs |
+| `src/rig.js` | Skeletons, skin weights and articulated models |
+| `src/combat.js` | Battle simulation, choreography and effects |
+| `src/physics.js` | Fixed-step dynamics, impulses and contact |
+| `src/audio.js` | Optional Web Audio ambience |
+| `src/style.css` | Composition, typography and responsive controls |
+| `public/models/` | Two licensed archive scans, loaded on demand |
+| `tests/experience.spec.js` | Desktop and mobile browser checks |
 
-## Deployment and verification
+Built with JavaScript, Three.js, Vite, CSS and Web Audio. Fonts are self-hosted. No backend, account, external API or paid service is required to run the site.
 
-GitHub Actions installs the locked dependencies, checks syntax, builds the static site, and deploys `dist` to GitHub Pages on pushes to `main`. The workflow also supports manual runs. The Vite base path matches the repository name.
+## Deployment
 
-Local release checks: production build and syntax checks passed; **14 browser smoke tests passed** across desktop and mobile Chromium. The tests cover actual WebGL draw calls, chapter navigation, overflow, gesture-only audio, replay/focus, motion controls, reduced motion, and WebGL fallback. The rendered design was reviewed at 1440×900 and 390×844; missing-image fallback and keyboard skip navigation were also exercised.
+The [GitHub Pages workflow](https://github.com/bekasyl00/aether-celestial-experience/actions/workflows/deploy.yml) installs locked dependencies, checks syntax, dynamics and model geometry, builds the site and deploys on pushes to `main`.
 
-The live GitHub Pages deployment was also checked on **20 October 2026**: HTTPS returned 200, all **14 smoke tests passed against the public URL**, and desktop/mobile captures confirmed WebGL rendering without uncaught JavaScript errors or horizontal overflow.
+Rendering requires WebGL 2. A visible recovery screen appears if it is unavailable. Balanced mode reduces GPU cost; actual frame rate depends on the device. Ambient motion respects the system preference, and sound starts only after a user gesture.
 
-Deployment is managed by the [Deploy AETHER workflow](https://github.com/bekasyl00/aether-celestial-experience/actions/workflows/deploy.yml).
+## Credits
 
-## Credits and license
-
-Created by **Bekassyl Zhaksylyk** with AI-assisted development and image generation.
-
-Authored source code is available under the [MIT License](LICENSE). Generated images, third-party fonts, and dependencies are documented separately in [ASSETS.md](ASSETS.md); they are not relicensed by the project's MIT license.
+Created by **Bekassyl Zhaksylyk** with AI-assisted development. Authored code is [MIT licensed](LICENSE). Third-party models, fonts and dependencies retain their own licenses, documented in [ASSETS.md](ASSETS.md).

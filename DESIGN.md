@@ -1,33 +1,35 @@
-# AETHER
+# AETHER — design direction
 
-An original cinematic portfolio experience by Bekassyl Zhaksylyk. The visitor's job is to explore a beautiful world by scrolling. Primary action: Begin the journey. Secondary actions: chapter navigation, optional sound, reduced motion, replay, source.
+An immersive sculpture gallery that becomes a battlefield. The dominant visual is live, rotatable geometry: ivory and antique gold on one side, charcoal and ember on the other. Two luminous portals anchor the composition. Sparse editorial typography and quiet instrument-like controls leave room for the characters.
 
-## Direction
+The primary actions are entering a portal, inspecting a character, and awakening the sword. A 1,000-character searchable catalog provides direct access to every generated design. Controls remain ordinary accessible HTML around the WebGL stage.
 
-Editorial fine art meets a heavenly film title sequence. An ivory angel and clouds occupy the right of the opening frame, balanced by a restrained left-aligned serif headline. Small technical captions and thin rules contrast the sculptural imagery. Bronze, limestone, smoke, and warm white form a multidimensional palette. No cards or dashboard conventions.
+## Composition
 
-The original user brief asks for angels, morning, heaven, real 3D, and spectacular scroll animation. The key observable decisions are: a dominant angel on first paint; real feather meshes and unfolding wings; three distinguishable chapters; camera and art transitions tied to native scroll; usable navigation at every chapter.
+- Desktop target: 1440×900. Mobile review target: 390×844.
+- Cormorant Garamond for editorial text; Manrope for controls. Both are self-hosted with Cyrillic subsets.
+- Full-screen canvas with a restrained fixed header, lower-left selected-character details, bottom-center camera controls and lower-right collection control.
+- Scene lighting and portal color distinguish the realms; heaven has a blue/gold colonnade and mist, hell has black rock and red lava.
+- Detailed figures are promoted on selection. Simplified distant figures preserve the same seeded identity.
+- Combat uses a clear central stage, health bars, restrained event captions and a result/replay panel.
 
-## Layout and tokens
+## Motion
 
-- Target viewports: 1440x900 and 390x844.
-- Source of visual tokens: `src/style.css` `:root`.
-- Heading: self-hosted Cormorant Garamond, 400/italic.
-- UI: self-hosted Manrope, 400/500.
-- `--ink`: #f4f0e7; `--muted`: #c5c2b7; `--gold`: #d2b786; `--base`: #242521.
-- Fixed WebGL canvas and background below content. No scroll hijacking.
-- Mobile typography shrinks without horizontal overflow. Touch controls retain 44px targets.
+Camera destinations ease into place while direct orbit and zoom remain under the visitor's control. Character movement combines skeletal poses, physical follow-through, weapon motion and bounded effects. Army movement has individual phases to avoid synchronized rows.
+
+Reduced motion pauses ambient animation and lowers battle movement. The explicit battle action still produces a playable sequence. Sound is opt-in.
 
 ## State contract
 
-- Loading: HTML content and atmospheric CSS background appear immediately; image decode and WebGL initialization enhance in place.
-- Empty: not applicable; no remote collection or user-generated content.
-- Error: WebGL failure keeps all text, artwork, and navigation usable. Audio failure is announced by a polite status message and the toggle remains off.
-- Partial: missing image retains legible scene gradient; unavailable WebGL retains the complete narrative.
-- Success: chapter navigation lands on real sections, replay returns to opening, source opens the real repository.
-- Permission: browser audio only begins after user interaction; no authentication or permissions required.
-- Reduced motion: system preference respected; user can pause ambient motion. Text remains visible, scrolling stays native.
+- Loading: visible progress text until a real WebGL scene is ready.
+- Collection empty: centered search message and clear-search control.
+- Selection: exact identity and matching detailed mesh, with focus returned to the canvas.
+- World: distinct environment and an explicit return action.
+- Battle: controls that conflict with combat are unavailable; replay creates a fresh seed.
+- Archive: scans load on demand, with a loading state and recoverable error.
+- WebGL failure: visible explanation and reload action.
+- Dialogs: native modal focus behavior, Escape to close, focus restoration.
 
-## Assets
+## Asset direction
 
-Original generated cinematic art, embedded locally. All 3D feathers, wing arrangement, orbital architecture, particles, and synthesized ambient sound are authored in code. No remote hotlinked assets. Asset generation details live in `ASSETS.md`.
+No image backdrop stands in for the interactive figures. Procedural characters are volumetric meshes. The museum archive is separate and credited. Sources and licenses are in `ASSETS.md`.

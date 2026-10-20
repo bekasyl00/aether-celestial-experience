@@ -1,121 +1,387 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#242521" />
-    <meta name="description" content="AETHER — an immersive journey through light, flight, and the heavens. A cinematic WebGL experience by Bekassyl Zhaksylyk." />
+    <meta name="theme-color" content="#090b10" />
+    <meta
+      name="description"
+      content="AETHER: The Other Side — интерактивная 3D-коллекция 1000 уникальных ангелов и демонов. Два портала. Свободная камера. Тысячи деталей."
+    />
+    <meta property="og:title" content="AETHER — The Other Side" />
+    <meta
+      property="og:description"
+      content="1000 уникальных персонажей. Два мира. Исследуй каждую грань."
+    />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="AETHER — Beyond the ordinary" />
-    <meta property="og:description" content="Somewhere between a dream and the divine. Enter a cinematic journey through the heavens." />
-    <meta property="og:url" content="https://bekasyl00.github.io/aether-celestial-experience/" />
-    <meta property="og:image" content="https://bekasyl00.github.io/aether-celestial-experience/images/awakening.webp" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      property="og:url"
+      content="https://bekasyl00.github.io/aether-celestial-experience/"
+    />
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
-    <link rel="preload" href="./images/awakening.webp" as="image" fetchpriority="high" />
-    <title>AETHER — Beyond the ordinary</title>
+    <title>AETHER — The Other Side</title>
   </head>
   <body>
-    <a class="skip-link" href="#journey">Skip to the journey</a>
-    <div class="world" aria-hidden="true">
-      <div class="world-base"></div>
-      <div class="world-image awakening"></div>
-      <div class="world-image paradise"></div>
-      <div class="world-shade"></div>
-      <div class="world-glow"></div>
-      <canvas id="celestial-canvas"></canvas>
-      <div class="grain"></div>
-      <div class="vignette"></div>
-    </div>
-
-    <header class="site-header">
-      <a class="brand" href="#home" aria-label="Aether — back to the beginning">
-        <svg viewBox="0 0 48 32" fill="none" aria-hidden="true"><path d="M24 28C22 16 12 12 2 3c0 11 7 17 16 20M24 28C26 16 36 12 46 3c0 11-7 17-16 20M18 18C12 17 7 12 5 7M30 18c6-1 11-6 13-11M24 27l-3-8 3-10 3 10-3 8Z" stroke="currentColor" stroke-width="1.15" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <span>AETHER<span class="brand-dot">®</span></span>
-      </a>
-      <nav class="top-nav" aria-label="Main navigation">
-        <a href="#journey">The journey</a>
-        <a href="#philosophy">The philosophy</a>
-      </nav>
-      <button class="sound-toggle" aria-label="Turn ambient sound on" aria-pressed="false">
-        <span class="sound-bars" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
-        <span class="sound-label">Sound off</span>
+    <main class="experience" id="experience">
+      <canvas
+        id="realm-canvas"
+        tabindex="0"
+        aria-label="Интерактивный 3D-мир: потяните для вращения, колесо для приближения. Стрелки вращают камеру, плюс и минус меняют расстояние."
+      ></canvas>
+      <div class="screen-vignette" aria-hidden="true"></div>
+      <div class="screen-grain" aria-hidden="true"></div>
+      <header class="header">
+        <a href="./" class="brand" aria-label="Aether — начало"
+          ><svg viewBox="0 0 40 40" fill="none" aria-hidden="true">
+            <path d="m20 3 16 28H4L20 3Z" stroke="currentColor" />
+            <path
+              d="M20 3v34M4 31l16-9 16 9M10 20h20"
+              stroke="currentColor"
+              stroke-width=".7"
+            />
+            <circle
+              cx="20"
+              cy="19"
+              r="6"
+              stroke="currentColor"
+              stroke-width=".7"
+            /></svg
+          ><span>AETHER<small>THE OTHER SIDE</small></span></a
+        >
+        <nav class="realm-switch" aria-label="Выбрать мир">
+          <button data-realm="all" aria-pressed="true">Между мирами</button
+          ><button data-realm="angel" aria-pressed="false">
+            <i class="realm-dot angel"></i>Небеса</button
+          ><button data-realm="demon" aria-pressed="false">
+            <i class="realm-dot demon"></i>Бездна
+          </button>
+        </nav>
+        <div class="header-actions">
+          <button
+            class="icon-button sound-toggle"
+            aria-pressed="false"
+            aria-label="Включить атмосферный звук"
+            title="Атмосферный звук"
+          >
+            <span class="sound-bars" aria-hidden="true"
+              ><i></i><i></i><i></i><i></i><i></i
+            ></span></button
+          ><button
+            class="icon-button"
+            id="info-open"
+            aria-label="О проекте и управление"
+            title="О проекте"
+          >
+            i
+          </button>
+        </div>
+      </header>
+      <div class="intro-copy">
+        <p class="eyebrow"><span></span> AN INTERACTIVE SCULPTURE COLLECTION</p>
+        <h1>У каждой стороны<br />своя <em>вечность.</em></h1>
+        <p class="intro-note">
+          1000 уникальных образов. Два мира.<br />Исследуй каждую грань.
+        </p>
+      </div>
+      <div class="edition" aria-hidden="true">
+        VOL. II<span>LIGHT / DARKNESS</span>
+      </div>
+      <button class="scene-caption angel-caption" data-enter-world="angel">
+        <span>01 — THE CELESTIAL</span><strong>Небеса</strong
+        ><small>ВОЙТИ В МИР ↗</small>
       </button>
-    </header>
-
-    <nav class="chapter-nav" aria-label="Journey chapters">
-      <a href="#home" aria-label="Chapter 1: The awakening" aria-current="location"><span>01</span><i></i></a>
-      <a href="#journey" aria-label="Chapter 2: The ascent"><span>02</span><i></i></a>
-      <a href="#paradise" aria-label="Chapter 3: The infinite"><span>03</span><i></i></a>
-    </nav>
-
-    <main>
-      <section class="hero" id="home" aria-labelledby="hero-title">
-        <div class="hero-content">
-          <p class="eyebrow intro-element"><span class="tiny-star">✦</span> BETWEEN EARTH & ETERNITY</p>
-          <h1 id="hero-title"><span class="title-line">Somewhere</span><span class="title-line"><em>beyond</em> the</span><span class="title-line">ordinary.</span></h1>
-          <p class="hero-description intro-element">A quiet escape. An extraordinary world.<br />Let the heavens unfold.</p>
-          <a class="journey-link intro-element" href="#journey"><span class="circle-arrow" aria-hidden="true">↗</span><span>Begin the journey</span></a>
+      <button class="scene-caption demon-caption" data-enter-world="demon">
+        <span>02 — THE INFERNAL</span><strong>Бездна</strong
+        ><small>ВОЙТИ В МИР ↗</small>
+      </button>
+      <aside class="selection-panel" aria-label="Выбранный персонаж">
+        <div class="selection-top">
+          <span id="selected-id">001 / 1000</span
+          ><span id="selected-realm">CELESTIAL</span>
         </div>
-        <div class="hero-side-note" aria-hidden="true">A STUDY IN LIGHT, FORM & FEELING</div>
-        <div class="hero-bottom intro-element">
-          <div class="chapter-caption"><span class="status-light"></span> A CELESTIAL EXPERIENCE <span class="edition">VOL. 001</span></div>
-          <a class="scroll-prompt" href="#journey"><span>SCROLL TO ASCEND</span><span class="scroll-line" aria-hidden="true"></span></a>
-          <span class="coordinate">EST. MMXXVI <span>↗</span></span>
+        <h2 id="selected-name">Seraphiel</h2>
+        <p id="selected-archetype">Хранитель первого света</p>
+        <div class="selection-metrics">
+          <span
+            ><b id="detail-count">—</b
+            ><small id="detail-label">элементов</small></span
+          ><span><b id="triangle-count">—</b><small>треугольников</small></span>
         </div>
-      </section>
-
-      <section class="interlude" id="philosophy" aria-labelledby="philosophy-title">
-        <div class="interlude-content reveal">
-          <p class="eyebrow">THE ART OF LOOKING UP</p>
-          <h2 id="philosophy-title">Some things aren't meant<br />to be understood.<br /><em>Only felt.</em></h2>
-          <p>Beyond the noise, there is a place where time softens.<br class="desktop-break" /> Where light becomes a language. And wonder finds you.</p>
-          <span class="vertical-rule" aria-hidden="true"></span>
+        <button class="inspect-button" id="inspect-selected">
+          Рассмотреть ближе <span aria-hidden="true">↗</span>
+        </button>
+      </aside>
+      <div class="drag-hint" id="drag-hint">
+        <svg viewBox="0 0 40 24" fill="none" aria-hidden="true">
+          <path d="M4 12h32M8 7l-5 5 5 5M32 7l5 5-5 5" stroke="currentColor" />
+          <circle
+            cx="20"
+            cy="12"
+            r="6"
+            fill="#101217"
+            stroke="currentColor"
+          /></svg
+        ><span>ПОТЯНИ, ЧТОБЫ ВРАЩАТЬ</span
+        ><small>Колесо — приблизить · Нажми на фигуру — выбрать</small>
+      </div>
+      <button class="world-back" id="world-back" hidden>← Между мирами</button
+      ><button class="sword-cta" id="battle-start">
+        <span class="sword-icon" aria-hidden="true">†</span
+        ><span>ПРОБУДИТЬ МЕЧ<small>Начать сражение</small></span>
+      </button>
+      <section
+        class="battle-hud"
+        id="battle-hud"
+        aria-label="Состояние боя"
+        hidden
+      >
+        <div class="fighter angel-fighter">
+          <span id="battle-angel-name">Свет</span
+          ><b id="angel-health-label">100</b>
+          <div class="health-track"><i id="angel-health"></i></div>
         </div>
-      </section>
-
-      <section class="chapter ascent" id="journey" aria-labelledby="ascent-title">
-        <div class="chapter-copy reveal">
-          <p class="eyebrow"><span class="chapter-number">II</span> THE ASCENT</p>
-          <h2 id="ascent-title">Made of light.<br /><em>Born to rise.</em></h2>
-          <p>Every feather holds a little infinity.<br />Every movement, a reason to let go.<br />Follow the feeling of weightlessness.</p>
-          <a class="text-link" href="#paradise">A little closer to forever <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="specimen-label"><span class="label-cross" aria-hidden="true">+</span><span>SERAPHIM<br /><small>FORM NO. 001 / IVORY & LIGHT</small></span></div>
-      </section>
-
-      <section class="chapter infinite" id="paradise" aria-labelledby="infinite-title">
-        <div class="chapter-copy reveal">
-          <p class="eyebrow"><span class="chapter-number">III</span> THE INFINITE</p>
-          <h2 id="infinite-title">Nothing ends.<br /><em>Everything<br />opens.</em></h2>
-          <p>Past the edge of the familiar.<br />Through the golden hours of a new world.<br />You are exactly where you need to be.</p>
-          <a class="journey-link" href="#afterglow"><span class="circle-arrow" aria-hidden="true">↗</span><span>Step into the light</span></a>
-        </div>
-        <p class="vertical-caption">THERE IS ALWAYS SOMETHING BEYOND.</p>
-      </section>
-
-      <section class="afterglow" id="afterglow" aria-labelledby="afterglow-title">
-        <div class="reveal">
-          <p class="eyebrow"><span class="tiny-star">✦</span> TAKE A LITTLE WONDER WITH YOU</p>
-          <h2 id="afterglow-title">Heaven is<br /><em>a state of mind.</em></h2>
-          <button class="replay-button"><span>Experience it again</span><span aria-hidden="true">↺</span></button>
+        <span class="battle-versus">VS<small id="battle-round">01</small></span>
+        <div class="fighter demon-fighter">
+          <span id="battle-demon-name">Тьма</span
+          ><b id="demon-health-label">100</b>
+          <div class="health-track"><i id="demon-health"></i></div>
         </div>
       </section>
+      <p class="battle-event" id="battle-event" hidden></p>
+      <aside class="battle-result" id="battle-result" hidden>
+        <p class="eyebrow">THE FATE HAS SPOKEN</p>
+        <h2 id="battle-winner">Побеждает свет.</h2>
+        <p id="battle-summary"></p>
+        <div>
+          <button id="battle-replay">Новое сражение ↗</button
+          ><button id="battle-close">Вернуться к миру</button>
+        </div>
+      </aside>
+      <div class="world-count">
+        <span class="live-dot"></span><b>1000</b> UNIQUE CHARACTERS
+        <span class="count-divider"></span><b>02</b> PORTALS
+      </div>
+      <div class="toolbar" aria-label="Управление 3D-сценой">
+        <div class="camera-controls">
+          <button
+            class="tool-button"
+            id="flip-model"
+            aria-label="Перевернуть выбранную модель"
+            title="Перевернуть модель"
+          >
+            ↕</button
+          ><button
+            class="tool-button"
+            id="rotate-left"
+            aria-label="Повернуть влево"
+            title="Повернуть влево"
+          >
+            ↶</button
+          ><button
+            class="tool-button"
+            id="zoom-out"
+            aria-label="Отдалить"
+            title="Отдалить"
+          >
+            −</button
+          ><button
+            class="tool-button reset-view"
+            id="reset-view"
+            aria-label="Показать всю сцену"
+            title="Общий план"
+          >
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path
+                d="M7 3H3v4m10-4h4v4M3 13v4h4m10-4v4h-4"
+                stroke="currentColor"
+                stroke-width="1.3"
+              />
+            </svg></button
+          ><button
+            class="tool-button"
+            id="zoom-in"
+            aria-label="Приблизить"
+            title="Приблизить"
+          >
+            +</button
+          ><button
+            class="tool-button"
+            id="rotate-right"
+            aria-label="Повернуть вправо"
+            title="Повернуть вправо"
+          >
+            ↷
+          </button>
+        </div>
+        <span class="toolbar-divider"></span
+        ><button class="text-tool" id="auto-rotate" aria-pressed="false">
+          <span aria-hidden="true">⟳</span> Автообзор</button
+        ><button class="text-tool" id="pause-motion" aria-pressed="false">
+          <span aria-hidden="true">Ⅱ</span
+          ><span class="motion-label">Движение</span>
+        </button>
+      </div>
+      <div class="bottom-right">
+        <button class="collection-button" id="collection-open">
+          <svg viewBox="0 0 18 18" fill="none" aria-hidden="true">
+            <path
+              d="M2 2h5v5H2zm9 0h5v5h-5zM2 11h5v5H2zm9 0h5v5h-5z"
+              stroke="currentColor"
+            /></svg
+          >Коллекция <span>1000</span></button
+        ><button
+          class="quality-button"
+          id="quality-toggle"
+          aria-label="Качество графики"
+        >
+          <span class="quality-dot"></span><span id="quality-label">ULTRA</span
+          ><span id="fps-label">— FPS</span>
+        </button>
+      </div>
+      <div class="loading-screen" id="loading-screen" role="status">
+        <div class="loading-emblem" aria-hidden="true">A</div>
+        <span class="eyebrow">AETHER / THE OTHER SIDE</span>
+        <h2>Открываем два мира.</h2>
+        <div class="loading-line"></div>
+        <p id="loading-description">Создаём 1000 уникальных персонажей…</p>
+      </div>
+      <div class="fallback-panel" id="fallback-panel" hidden>
+        <h2>Мир ждёт по ту сторону.</h2>
+        <p>
+          Браузер не смог включить 3D. Включи аппаратное ускорение или открой
+          сайт в Chrome, Safari или Firefox.
+        </p>
+        <button class="collection-button" id="retry">
+          Попробовать снова ↗
+        </button>
+      </div>
+      <p class="toast" id="status" role="status" aria-live="polite"></p>
     </main>
-
-    <footer class="site-footer">
-      <a class="footer-wordmark" href="#home">AETHER</a>
-      <div class="footer-credit">Imagined & built by <a href="https://github.com/bekasyl00" target="_blank" rel="noopener noreferrer">Bekassyl Zhaksylyk ↗</a></div>
-      <a href="https://github.com/bekasyl00/aether-celestial-experience" target="_blank" rel="noopener noreferrer">View the source ↗</a>
-      <span>© 2026</span>
-    </footer>
-
-    <div class="bottom-controls">
-      <button class="motion-toggle" aria-pressed="false" aria-label="Pause ambient animation"><svg class="pause-icon" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 4v8M10 4v8" stroke="currentColor" stroke-width="1.5"/></svg><span>Motion</span></button>
-      <div class="progress-track" role="progressbar" aria-label="Journey progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span></span></div>
-    </div>
-    <p class="sr-only" id="experience-status" role="status"></p>
-    <noscript><div class="noscript-note">Welcome to AETHER. Enable JavaScript for the animated 3D experience. You can still explore the journey below.</div></noscript>
+    <dialog id="collection-dialog" class="collection-dialog">
+      <header class="dialog-header">
+        <div>
+          <p class="eyebrow">THE COMPLETE COLLECTION</p>
+          <h2>По ту сторону.</h2>
+        </div>
+        <button class="icon-button close-dialog" aria-label="Закрыть коллекцию">
+          ×
+        </button>
+      </header>
+      <p class="collection-intro">
+        500 ангелов. 500 демонов. У каждого — собственная форма, силуэт и
+        снаряжение.
+      </p>
+      <div class="collection-filters" aria-label="Фильтр коллекции">
+        <button data-filter="all" aria-pressed="true">
+          Все <span>1000</span></button
+        ><button data-filter="angel" aria-pressed="false">
+          Ангелы <span>500</span></button
+        ><button data-filter="demon" aria-pressed="false">
+          Демоны <span>500</span>
+        </button>
+      </div>
+      <label class="search-box"
+        ><svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <circle cx="8.5" cy="8.5" r="5.5" stroke="currentColor" />
+          <path d="m13 13 4 4" stroke="currentColor" /></svg
+        ><input
+          id="collection-search"
+          type="search"
+          placeholder="Имя, архетип или номер…"
+          aria-label="Найти персонажа"
+        /><button
+          id="search-clear"
+          aria-label="Очистить поиск"
+          type="button"
+          hidden
+        >
+          ×
+        </button></label
+      >
+      <div id="character-list" class="character-list"></div>
+      <p class="no-results" id="no-results" hidden>
+        Ничего не найдено. Попробуй другое имя или номер.
+      </p>
+      <footer class="collection-footer">
+        <span id="collection-result-count">1000 ПЕРСОНАЖЕЙ</span
+        ><span>SELECT TO EXPLORE ↗</span>
+      </footer>
+    </dialog>
+    <dialog id="info-dialog" class="info-dialog">
+      <header class="dialog-header">
+        <div>
+          <p class="eyebrow">THE ART OF TWO WORLDS</p>
+          <h2>AETHER II</h2>
+        </div>
+        <button
+          class="icon-button close-dialog"
+          aria-label="Закрыть информацию"
+        >
+          ×
+        </button>
+      </header>
+      <p class="info-lead">Две стороны вечности.<br />И ты — между ними.</p>
+      <p>
+        Коллекция из 1000 процедурно созданных персонажей. 20 архетипов,
+        индивидуальная геометрия, тысячи элементов в детальных моделях. Всё, что
+        ты видишь в сцене, — настоящий 3D.
+      </p>
+      <div class="info-row">
+        <span>Вращать</span><b>Потяни мышью / одним пальцем</b>
+      </div>
+      <div class="info-row">
+        <span>Приблизить</span><b>Колесо / два пальца / + −</b>
+      </div>
+      <div class="info-row">
+        <span>Переместить</span><b>Правая кнопка / два пальца</b>
+      </div>
+      <div class="info-row">
+        <span>Клавиатура</span><b>Стрелки · + − · R</b>
+      </div>
+      <h3>Музейный архив</h3>
+      <p>
+        Два отдельных фотограмметрических скана: австрийский ангел и древний
+        крылатый страж. Доступны для детального осмотра.
+      </p>
+      <button
+        id="model-style-toggle"
+        class="archive-button"
+        aria-pressed="false"
+      >
+        Открыть 3D-сканы <span>220k / 150k △ ↗</span>
+      </button>
+      <p class="archive-note" id="archive-note">
+        Сканы загружаются по запросу · 22 МБ
+      </p>
+      <div class="credits">
+        <p>
+          Engel — noe-3d.at, CC BY 4.0. Подготовка: Mehmet Kerem Turkcan /
+          Valdrada. Kneeling winged monster — Smithsonian, CC0.
+        </p>
+        <a
+          href="https://github.com/bekasyl00/aether-celestial-experience/blob/main/ASSETS.md"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Источники и лицензии ↗</a
+        >
+      </div>
+      <footer class="info-footer">
+        <a
+          href="https://github.com/bekasyl00/aether-celestial-experience"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Исходный код ↗</a
+        ><span>BY BEKASSYL ZHAKSYLYK · 2026</span>
+      </footer>
+    </dialog>
+    <noscript
+      ><div class="fallback-panel">
+        <h2>Для этого мира нужен JavaScript.</h2>
+        <p>
+          Включи JavaScript и обнови страницу, чтобы исследовать 3D-коллекцию.
+        </p>
+      </div></noscript
+    >
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
